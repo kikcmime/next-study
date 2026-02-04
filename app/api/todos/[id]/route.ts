@@ -6,7 +6,10 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   const body = await request.json();
   const todo = await prisma.todo.update({
     where: { id },
-    data: { completed: body.completed }
+    data: {
+      ...(body.completed !== undefined && { completed: body.completed }),
+      ...(body.title !== undefined && { title: body.title })
+    }
   });
   return NextResponse.json(todo);
 }
