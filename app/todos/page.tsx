@@ -1,6 +1,9 @@
 "use client";
 import useSWR from "swr";
 import { useState } from "react";
+import { Input, Button, List, Checkbox, Space } from "antd";
+import { PlusOutlined, EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
+import PageCard from "@/components/PageCard";
 
 type Todo = { id: number; title: string; completed: boolean };
 
@@ -67,62 +70,72 @@ export default function TodosPage() {
   }
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Todos 示例</h2>
-
-      <div className="mb-4 flex gap-2">
-        <input
-          className="border rounded px-3 py-2 flex-1"
+    <PageCard title="待办事项管理">
+      <Space.Compact style={{ width: "100%", marginBottom: 16 }}>
+        <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="新 Todo"
+          placeholder="输入新的待办事项"
+          onPressEnter={create}
         />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={create}>
+        <Button type="primary" icon={<PlusOutlined />} onClick={create}>
           添加
-        </button>
-      </div>
+        </Button>
+      </Space.Compact>
 
-      <ul className="space-y-2">
-        {data?.map((t) => (
-          <li key={t.id} className="flex items-center justify-between bg-white p-3 rounded shadow">
-            <div className="flex-1">
-              {editingId === t.id ? (
-                <div className="flex gap-2">
-                  <input
-                    className="border rounded px-2 py-1 flex-1"
-                    value={editTitle}
-                    onChange={(e) => setEditTitle(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && saveEdit(t.id)}
-                    autoFocus
-                  />
-                  <button className="bg-green-600 text-white px-3 py-1 rounded text-sm" onClick={() => saveEdit(t.id)}>
-                    保存
-                  </button>
-                  <button className="bg-slate-400 text-white px-3 py-1 rounded text-sm" onClick={cancelEdit}>
-                    取消
-                  </button>
-                </div>
-              ) : (
-                <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" checked={t.completed} onChange={() => toggle(t.id, !t.completed)} />
-                  <span className={t.completed ? "line-through text-slate-400" : ""}>{t.title}</span>
-                </label>
-              )}
-            </div>
-            {editingId !== t.id && (
-              <div className="flex gap-2">
-                <button className="text-blue-600 hover:text-blue-800 text-sm" onClick={() => startEdit(t)}>
-                  编辑
-                </button>
-                <button className="text-red-600 hover:text-red-800 text-sm" onClick={() => deleteTodo(t.id)}>
-                  删除
-                </button>
-              </div>
+      <List
+        loading={!data}
+        dataSource={data || []}
+        renderItem={(t) => (
+          <List.Item
+            actions={
+              editingId !== t.id
+                ? [
+                    <Button
+                      type="text"
+                      icon={<EditOutlined />}
+                      onClick={() => startEdit(t)}
+                      key="edit"
+                    />,
+                    <Button
+                      type="text"
+                      danger
+                      icon={<DeleteOutlined />}
+                      onClick={() => deleteTodo(t.id)}
+                      key="delete"
+                    />
+                  ]
+                : undefined
+            }
+          >
+            {editingId === t.id ? (
+              <Space.Compact style={{ width: "100%" }}>
+                <Input
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  onPressEnter={() => saveEdit(t.id)}
+                  autoFocus
+                />
+                <Button type="primary" icon={<SaveOutlined />} onClick={() => saveEdit(t.id)}>
+                  保存
+                </Button>
+                <Button icon={<CloseOutlined />} onClick={cancelEdit}>
+                  取消
+                </Button>
+              </Space.Compact>
+            ) : (
+              <Checkbox
+                checked={t.completed}
+                onChange={() => toggle(t.id, !t.completed)}
+              >
+                <span style={{ textDecoration: t.completed ? "line-through" : "none", color: t.completed ? "#999" : "#333" }}>
+                  {t.title}
+                </span>
+              </Checkbox>
             )}
-          </li>
-        ))}
-      </ul>
-      {!data && <p className="text-slate-500 mt-4">加载中…</p>}
-    </div>
+          </List.Item>
+        )}
+      />
+    </PageCard>
   );
 }
