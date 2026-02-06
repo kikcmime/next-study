@@ -8,6 +8,7 @@ const routeMap: Record<string, string> = {
   "/todos": "待办事项",
   "/auth": "认证演示",
   "/components": "组件库",
+  "/reactflow": "节点流",
   "/docs": "文档中心",
   "/settings": "系统设置"
 };

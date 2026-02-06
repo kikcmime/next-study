@@ -50,12 +50,18 @@ const menuItems: MenuItem[] = [
   },
   {
     key: "5",
+    icon: <DashboardOutlined />,
+    label: "节点流",
+    path: "/reactflow"
+  },
+  {
+    key: "6",
     icon: <FileTextOutlined />,
     label: "文档中心",
     path: "/docs"
   },
   {
-    key: "6",
+    key: "7",
     icon: <SettingOutlined />,
     label: "系统设置",
     path: "/settings"
@@ -83,6 +89,13 @@ const featureCards = [
     icon: <AppstoreOutlined className="text-purple-500 text-3xl" />,
     path: "/components",
     color: "purple"
+  },
+  {
+    title: "节点流编辑器",
+    description: "使用 React Flow 实现的可视化流程编辑",
+    icon: <DashboardOutlined className="text-orange-500 text-3xl" />,
+    path: "/reactflow",
+    color: "orange"
   }
 ];
 
@@ -214,7 +227,7 @@ export default function Home() {
             </Paragraph>
             <Row gutter={[16, 16]}>
               {featureCards.map((card, index) => (
-                <Col xs={24} sm={12} md={8} key={index}>
+                <Col xs={24} sm={12} md={6} key={index}>
                   <Card
                     hoverable
                     style={{ height: "100%" }}
@@ -258,6 +271,7 @@ export default function Home() {
                 "SWR",
                 "React Hook Form",
                 "Framer Motion",
+                "React Flow",
                 "Ant Design",
                 "Vitest"
               ].map((tech, index) => (
