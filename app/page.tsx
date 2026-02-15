@@ -51,7 +51,7 @@ const menuItems: MenuItem[] = [
   {
     key: "5",
     icon: <DashboardOutlined />,
-    label: "节点流",
+    label: "工作流",
     path: "/reactflow"
   },
   {
@@ -91,7 +91,7 @@ const featureCards = [
     color: "purple"
   },
   {
-    title: "节点流编辑器",
+    title: "工作流编辑器",
     description: "使用 React Flow 实现的可视化流程编辑",
     icon: <DashboardOutlined className="text-orange-500 text-3xl" />,
     path: "/reactflow",
@@ -231,7 +231,13 @@ export default function Home() {
                   <Card
                     hoverable
                     style={{ height: "100%" }}
-                    bodyStyle={{ display: "flex", flexDirection: "column", gap: 12 }}
+                    styles={{
+                      body: {
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 12
+                      }
+                    }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                       {card.icon}

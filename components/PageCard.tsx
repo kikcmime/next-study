@@ -18,8 +18,10 @@ export default function PageCard({ children, title, extra }: PageCardProps) {
         borderRadius: 8,
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)"
       }}
-      bodyStyle={{
-        padding: "24px"
+      styles={{
+        body: {
+          padding: "24px"
+        }
       }}
     >
       {children}
