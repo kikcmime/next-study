@@ -1,5 +1,5 @@
+// next.config.js
 module.exports = {
-  exportTrailingSlash: true,
+  output: 'export',
   basePath: '/next-study',
-  // Other configurations can be added here
 };
