@@ -25,9 +25,9 @@ export default function BreadcrumbNav() {
   const pathSegments = pathname.split("/").filter(Boolean);
 
   return (
-    <nav className="w-full bg-white/80 backdrop-blur-sm border-b border-slate-200/50 sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ol className="flex items-center space-x-2 py-3 sm:py-4 text-sm">
+    <nav className="w-full glass-dark border-b border-white/5 sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <ol className="flex items-center space-x-1 py-4 text-sm">
           <motion.li
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -35,7 +35,7 @@ export default function BreadcrumbNav() {
           >
             <Link
               href="/"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 group"
+              className="flex items-center space-x-2 px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 group"
             >
               <HomeOutlined className="text-base group-hover:scale-110 transition-transform" />
               <span className="font-medium">首页</span>
@@ -56,7 +56,7 @@ export default function BreadcrumbNav() {
                 className="flex items-center"
               >
                 <svg
-                  className="w-4 h-4 text-slate-300 mx-2"
+                  className="w-5 h-5 text-slate-600 mx-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -69,13 +69,17 @@ export default function BreadcrumbNav() {
                   />
                 </svg>
                 {isLast ? (
-                  <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-slate-900 font-semibold bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200">
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="inline-flex items-center px-4 py-2 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30"
+                  >
                     {title}
-                  </span>
+                  </motion.span>
                 ) : (
                   <Link
                     href={path}
-                    className="inline-flex items-center px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all duration-200 font-medium"
+                    className="inline-flex items-center px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 font-medium"
                   >
                     {title}
                   </Link>
