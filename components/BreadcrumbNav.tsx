@@ -25,9 +25,9 @@ export default function BreadcrumbNav() {
   const pathSegments = pathname.split("/").filter(Boolean);
 
   return (
-    <nav className="w-full glass-dark border-b border-white/5 sticky top-0 z-40">
+    <nav className="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <ol className="flex items-center space-x-1 py-4 text-sm">
+        <ol className="flex items-center space-x-2 py-4 text-sm">
           <motion.li
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -35,7 +35,7 @@ export default function BreadcrumbNav() {
           >
             <Link
               href="/"
-              className="flex items-center space-x-2 px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 group"
+              className="flex items-center space-x-2 px-3 py-2 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group"
             >
               <HomeOutlined className="text-base group-hover:scale-110 transition-transform" />
               <span className="font-medium">首页</span>
@@ -56,7 +56,7 @@ export default function BreadcrumbNav() {
                 className="flex items-center"
               >
                 <svg
-                  className="w-5 h-5 text-slate-600 mx-1"
+                  className="w-4 h-4 text-slate-400 mx-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -72,14 +72,14 @@ export default function BreadcrumbNav() {
                   <motion.span
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="inline-flex items-center px-4 py-2 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30"
+                    className="inline-flex items-center px-3 py-2 rounded-lg font-semibold text-slate-800 bg-slate-100"
                   >
                     {title}
                   </motion.span>
                 ) : (
                   <Link
                     href={path}
-                    className="inline-flex items-center px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 font-medium"
+                    className="inline-flex items-center px-3 py-2 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 font-medium"
                   >
                     {title}
                   </Link>
